@@ -21,12 +21,21 @@ class Matriz{
         return matriz;
     }
 
+    static MatrizToArray(obj){
+        let arr = [];
+        obj.map((elm, i, j) => {
+            arr.push(elm);
+        });
+        return arr;
+    }
+
     print(){
         console.table(this.data);
     }
     randomize(){
         this.map((elm,i,j) => {
             return Math.random() * 2 - 1;
+            // return Math.floor(Math.random() * 10);
         });
     }
 
@@ -51,6 +60,32 @@ class Matriz{
         return this;
     }
 
+    static transpose(A){
+        var matriz = new Matriz(A.cols, A.rows);
+        matriz.map((num, i, j) => {
+            return A.data[j][i];
+        });
+        return matriz;
+    }
+
+    static escalar_multiply(A, escalar){
+        var matriz = new Matriz(A.rows, A.cols);
+
+        matriz.map((num, i, j) => {
+            return A.data[i][j] * escalar;
+        });
+        return matriz;
+    }
+
+    static hadamard(A, B){
+        var matriz = new Matriz(A.rows, A.cols);
+
+        matriz.map((num, i, j) => {
+            return A.data[i][j] * B.data[i][j];
+        })
+        return matriz;
+    }
+
     static add(A, B){
         var matriz = new Matriz(A.rows, A.cols);
         //tudo que esta dentro do map() é passado como parametro chamado func na funcao acima
@@ -60,6 +95,14 @@ class Matriz{
         });
         //console.log(matriz.data);
 
+        return matriz;
+    }
+
+    static subtract(A, B){
+        var matriz = new Matriz(A.rows, A.cols);
+        matriz.map((num, i, j) => {
+            return A.data[i][j] - B.data[i][j];
+        });
         return matriz;
     }
 

@@ -1,7 +1,8 @@
-#nao funciona por que não existe o keras.'models'
+#nao funciona por causa do arquivo keras_model.h5
 import cv2
 import mediapipe as mp
-from keras.models import load_model
+# from keras.models import load_model
+import keras
 import numpy as np
 
 cap = cv2.VideoCapture(0)
@@ -9,7 +10,8 @@ cap = cv2.VideoCapture(0)
 hands = mp.solutions.hands.Hands(max_num_hands=1)
 
 classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-model = load_model('keras_model.h5')
+# model = load_model('keras_model.h5')
+model = keras.models.load_model('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\RedeNeuralJS\\Libras_Simples\\keras_model.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 while True:

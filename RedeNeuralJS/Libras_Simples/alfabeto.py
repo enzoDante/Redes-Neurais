@@ -1,3 +1,4 @@
+#nao funciona por que não existe o keras.'models'
 import cv2
 import mediapipe as mp
 from keras.models import load_model

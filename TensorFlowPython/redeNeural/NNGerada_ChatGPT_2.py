@@ -21,7 +21,9 @@ x_test = scaler.transform(x_test)
 modelo = Sequential()
 #primeira camada oculta com 64 neuronios
 modelo.add(keras.layers.Dense(units=64, input_dim=10, activation='relu'))
+#keras.layers.BatchNormalization() normaliza as ativações da camada anterior (acelera o treinamento e leva a melhores resultados)
 modelo.add(keras.layers.BatchNormalization())
+#Dropout(0.5) desliga aleatoriamente 50% dos neuronios durante o treinamento ajuda a prevenir overfitting
 modelo.add(keras.layers.Dropout(0.5))
 
 #segunda camada oculta com 128 neuronios

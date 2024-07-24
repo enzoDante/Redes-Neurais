@@ -28,7 +28,7 @@ modelo.add(keras.layers.Dense(units=3, activation='relu', input_dim=7)) # x_trei
 modelo.add(keras.layers.Dense(units=1, activation='linear'))#somente 1 valor de saida
 
 #treinando a rede com os dados do csv
-#loss -> função de perda    optimizer -> busca ponto minimo da função    metrics -> 
+#loss -> função de perda    optimizer -> busca ponto minimo da função    metrics -> acompanha a performance do treino
 modelo.compile(loss='mse', optimizer='adam', metrics=['mae'])
 
 #.fit treina o modelo, sendo x_treino as entradas e y_treino respectivas saidas

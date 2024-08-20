@@ -4,15 +4,15 @@ import numpy as np
 import csv
 
 # Lista de rótulos (por exemplo, letras A, B, C...)
-labels = ['A', 'B', 'C', ...]
+labels = ['A', 'B', 'C', 'D', 'E']
 
 def save_landmarks(landmarks, label):
-    with open('hand_gestures.csv', mode='a', newline='') as file:
+    with open('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\hand_gestures.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(np.append(landmarks, label))
 
 # Suponha que você tenha uma lógica para definir o rótulo atual
-current_label = 'A'
+current_label = 1
 
 def extract_hand_landmarks(results):
     landmarks = []
@@ -49,13 +49,17 @@ while cap.isOpened():
             landmarks = extract_hand_landmarks(result)
             print(landmarks)  # Substituir isso com a lógica para salvar os dados
             if landmarks.size > 0:
-                save_landmarks(landmarks, current_label)
+                save_landmarks(landmarks, labels[current_label])
     
     # Mostrar a imagem
     cv2.imshow('Hand Tracking', frame)
     
-    if cv2.waitKey(1) & 0xFF == 27:  # Pressionar 'ESC' para sair
+    tecla = cv2.waitKey(1) & 0xFF
+    if tecla == 27:  # Pressionar 'ESC' para sair
         break
+    elif tecla == ord('e'):
+        print('mudouuuuuuu aaadsadsadsadas\n\n')
+        current_label += 1
 
 cap.release()
 cv2.destroyAllWindows()

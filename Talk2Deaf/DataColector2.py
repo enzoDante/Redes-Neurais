@@ -23,7 +23,7 @@ labeled_gestures = {}
 
 # Função para salvar a sequência de landmarks em um arquivo JSON
 def save_labeled_gestures(labeled_gestures, file_path):
-    with open(file_path, 'w') as f:
+    with open(file_path, 'w') as f: #w
         json.dump(labeled_gestures, f, indent=4)
 
 # Inicializar a captura de vídeo
@@ -41,7 +41,7 @@ while True:
 
     # Processar a imagem e detectar as mãos
     results = hands.process(image_rgb)
-
+    cv2.putText(frame, rotulo, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
             frame_landmarks = {}

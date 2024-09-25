@@ -3,7 +3,7 @@ import json
 
 
 # Carrega os dados do arquivo JSON
-with open('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gestos.json', 'r') as file:
+with open('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gestos2.json', 'r') as file:
     data = json.load(file)
 
 
@@ -56,6 +56,7 @@ encoded_labels = keras.utils.to_categorical(encoded_labels, num_classes=num_clas
 model = Sequential()
 model.add(keras.layers.LSTM(64, input_shape=input_shape, return_sequences=True))#64
 model.add(keras.layers.LSTM(64))
+model.add(keras.layers.Dense(128, activation='relu')) #adicionando esta camada
 model.add(keras.layers.Dense(num_classes, activation='softmax'))
 
 
@@ -64,9 +65,9 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 
 # Treina o modelo
-model.fit(gestures, encoded_labels, epochs=100, validation_split=0.2)
+model.fit(gestures, encoded_labels, epochs=50, validation_split=0.2)
 
 
 # Salva o modelo
-model.save('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gesture_model.h5')
+model.save('C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gesture_model2.h5')
 #o keras fala de usar o formato .keras ao inves de .h5

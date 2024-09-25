@@ -12,7 +12,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 
 # Configurações
-DATA_FILE = 'C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gestos.json'
+DATA_FILE = 'C:\\Users\\Souls Dante\\Documents\\vsCode\\Redes-Neurais\\Talk2Deaf\\modelo_2\\gestos2.json'
 
 
 # Carrega dados existentes
@@ -52,7 +52,7 @@ def capture_gestures():
                 if recording:
                     frame_data = [(lm.x, lm.y, lm.z) for lm in landmarks.landmark]
                     frames.append(frame_data)
-       
+                    cv2.putText(frame, "Gravando...", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
         cv2.imshow('Gesture Recorder', frame)
        
         key = cv2.waitKey(1)
@@ -68,7 +68,7 @@ def capture_gestures():
                 recording = False
                 frames = []
             else:
-                gesture_name = input('Enter gesture name: ')
+                gesture_name = input('Digite o rótulo do gesto: ')
                 recording = True
         elif key == ord('s'):  # Press 's' to save data
             save_data()

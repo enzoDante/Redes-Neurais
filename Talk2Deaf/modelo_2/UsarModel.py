@@ -46,7 +46,12 @@ def preprocess_frame(frame):
 def predict_gesture(frame):
     processed_frame = preprocess_frame(frame)
     prediction = model.predict(processed_frame)
-    return LABELS[np.argmax(prediction)]
+    #return LABELS[np.argmax(prediction)]
+
+    predicted_label_idx = np.argmax(prediction)
+    confidence = prediction[0][predicted_label_idx]  # Confiança da predição (probabilidade da classe)
+    
+    return LABELS[predicted_label_idx], confidence
 
 
 def main():
@@ -69,10 +74,12 @@ def main():
                 hand_data = [(lm.x, lm.y, lm.z) for lm in landmarks.landmark]
                
                 # Previsão do gesto
-                gesture_name = predict_gesture(np.array(hand_data))
+                gesture_name, confidence = predict_gesture(np.array(hand_data))
                
-                # Desenha a previsão na imagem
-                cv2.putText(frame, gesture_name, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+                if confidence > 0.8:
+                    # Desenha a previsão na imagem
+                    # cv2.putText(frame, gesture_name, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+                    cv2.putText(frame, f'{gesture_name} ({confidence*100:.1f}%)', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
                 mp_drawing.draw_landmarks(frame, landmarks, mp_hands.HAND_CONNECTIONS)
        
         cv2.imshow('Gesture Recognition', frame)

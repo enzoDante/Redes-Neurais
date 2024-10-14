@@ -1,4 +1,4 @@
-# Explicação:
+# Explicação (tecnicaReducao.py):
 ## Função carregar_gestos:
 
 - Carrega o arquivo JSON com os gestos coletados, que contém as coordenadas de cada gesto.
@@ -7,7 +7,7 @@
 
 - Calcula a distância euclidiana entre dois pontos tridimensionais (um ponto em um frame e o correspondente no próximo frame).
 ## Função remover_frames_redundantes:
-
+* [Corrigir para verificar frames somente das mãos!!!]
 - Remove frames cuja mudança nas coordenadas é menor do que um limite definido (limite_distancia).
 - Mantém o primeiro frame e só adiciona outros frames se a média das distâncias entre as partes do corpo for maior que o limite.
 ## Truncamento/Padding:
